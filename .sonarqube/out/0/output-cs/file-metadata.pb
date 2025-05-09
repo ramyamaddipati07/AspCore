@@ -1,0 +1,16 @@
+8
+/D:\MyWork\Podman\ASP_Core\Pages\Error.cshtml.csutf-88
+/D:\MyWork\Podman\ASP_Core\Pages\Index.cshtml.csutf-8:
+1D:\MyWork\Podman\ASP_Core\Pages\Privacy.cshtml.csutf-8-
+$D:\MyWork\Podman\ASP_Core\Program.csutf-8P
+ED:\MyWork\Podman\ASP_Core\obj\Debug\net8.0\ASP_Core.GlobalUsings.g.csutf-8d
+YD:\MyWork\Podman\ASP_Core\obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.csutf-8N
+CD:\MyWork\Podman\ASP_Core\obj\Debug\net8.0\ASP_Core.AssemblyInfo.csutf-8S
+HD:\MyWork\Podman\ASP_Core\obj\Debug\net8.0\ASP_Core.RazorAssemblyInfo.csutf-8²
+¦D:\MyWork\Podman\ASP_Core\obj\Debug\net8.0\Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Pages_Error_cshtml.g.csutf-8²
+¦D:\MyWork\Podman\ASP_Core\obj\Debug\net8.0\Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Pages_Index_cshtml.g.csutf-8´
+¨D:\MyWork\Podman\ASP_Core\obj\Debug\net8.0\Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Pages_Privacy_cshtml.g.csutf-8Í
+ÁD:\MyWork\Podman\ASP_Core\obj\Debug\net8.0\Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Pages_Shared__ValidationScriptsPartial_cshtml.g.csutf-8¹
+­D:\MyWork\Podman\ASP_Core\obj\Debug\net8.0\Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Pages__ViewImports_cshtml.g.csutf-8·
+«D:\MyWork\Podman\ASP_Core\obj\Debug\net8.0\Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Pages__ViewStart_cshtml.g.csutf-8»
+¯D:\MyWork\Podman\ASP_Core\obj\Debug\net8.0\Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Pages_Shared__Layout_cshtml.g.csutf-8

@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  coreapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5040:8080" # Adjust if your app uses 8080 inside container
+    container_name: asp_core
+    #restart: always
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "5023:80"
+    
+    #volumes:
+      #- ./nginx.conf:/etc/nginx/nginx.conf:ro
+    #depends_on:
+#- coreapp
+    #restart: always
+  

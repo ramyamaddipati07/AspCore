@@ -1,0 +1,6 @@
+projectKey=ALM_Ramya:master
+serverUrl=http://sonar.cybage.com
+serverVersion=9.9.7.96285
+dashboardUrl=http://sonar.cybage.com/dashboard?id=ALM_Ramya%3Amaster
+ceTaskId=AZWJrJPUnlnzdK_grxHx
+ceTaskUrl=http://sonar.cybage.com/api/ce/task?id=AZWJrJPUnlnzdK_grxHx

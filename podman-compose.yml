@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  web:
+    image: nginx:alpine
+    container_name: nginx_alpine_compose
+    ports:
+      - "9076:80"
+    networks:
+      - frontend
+
+  db:
+    image: mysql
+    container_name: database
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mydb
+    networks:
+      - backend
+    volumes:
+      - db_data:/var/lib/mysql
+
+  coreapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:8080" # Adjust if your app uses 8080 inside container
+    container_name: asp_core
+    depends_on:
+      - db
+    networks:
+      - frontend
+      - backend
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+
+volumes:
+  db_data:
+

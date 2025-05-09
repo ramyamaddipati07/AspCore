@@ -1,0 +1,27 @@
+var builder = WebApplication.CreateBuilder(args);
+
+// Bind Kestrel to all network interfaces
+builder.WebHost.UseKestrel(options =>
+{
+    options.ListenAnyIP(8080); // Ensure it binds correctly
+});
+
+// Add services to the container.
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthorization();
+app.MapRazorPages();
+
+app.Run();
