@@ -15,9 +15,10 @@ jobs:
 
       - name: Build and Run Containers
         run: |
-          podman compose down || true
+          podman compose down; if ($LASTEXITCODE -ne 0) { Write-Host "compose down failed, continuing..." }
           podman compose build
           podman compose up -d
+          shell: pwsh
 
       - name: Smoke Test ASP.NET Core App
         run: curl --fail http://localhost:5000 || exit 1
