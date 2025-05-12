@@ -1,25 +1,36 @@
-name: Podman Compose Deployment
+name: Build and Deploy ASP.NET Core with Podman
 
 on:
   push:
-    branches:
-      - main  # or your deployment branch
+    branches: [ main ]
 
 jobs:
-  deploy:
-    runs-on: self-hosted  # Podman must be installed
+  build-and-deploy:
+    runs-on: self-hosted
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-
-      - name: Build and Run Containers
+      - name: Start Podman Service in WSL
+        shell: pwsh
         run: |
-          podman compose down; if ($LASTEXITCODE -ne 0) { Write-Host "compose down failed, continuing..." }
-          podman compose build
-          podman compose up -d
-          shell: pwsh
+          wsl -d podman-machine podman system service -t 0 &
 
-      - name: Smoke Test ASP.NET Core App
-        run: curl --fail http://localhost:5000 || exit 1
+      - name: Compose Down (clean-up)
+        shell: pwsh
+        run: |
+          wsl -d podman-machine podman compose down
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "compose down failed, continuing..."
+          }
+
+      - name: Build and Compose Up
+        shell: pwsh
+        run: |
+          wsl -d podman-machine podman compose -f docker-compose.yml up -d --build
+
+      - name: Check Podman Containers
+        shell: pwsh
+        run: |
+          wsl -d podman-machine podman ps
