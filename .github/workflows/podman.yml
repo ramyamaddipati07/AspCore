@@ -12,33 +12,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Start Podman WSL VM (if needed)
-        shell: powershell
-        continue-on-error: true
-        run: |
-          $wslDistros = wsl --list --verbose
-          if ($wslDistros -match "podman\s+Stopped") {
-            Write-Host "Starting podman WSL VM..."
-            podman machine start
-          } else {
-            Write-Host "Podman WSL VM already running."
-          }
-
-      - name: Start Podman system service in background
-        shell: powershell
-        continue-on-error: true
-        run: |
-          Start-Process -NoNewWindow wsl -ArgumentList '-d podman podman system service -t 0'
-
-      - name: Compose Down (clean-up)
-        shell: powershell
-        continue-on-error: true
-        run: |
-          wsl -d podman podman compose down
-          if ($LASTEXITCODE -ne 0) {
-            Write-Host "compose down failed or nothing to stop, continuing..."
-          }
-
       - name: Build and Compose Up
         shell: powershell
         run: |
