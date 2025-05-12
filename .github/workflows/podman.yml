@@ -1,0 +1,23 @@
+name: Podman Compose Deployment
+
+on:
+  push:
+    branches:
+      - main  # or your deployment branch
+
+jobs:
+  deploy:
+    runs-on: self-hosted  # Podman must be installed
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build and Run Containers
+        run: |
+          podman compose down || true
+          podman compose build
+          podman compose up -d
+
+      - name: Smoke Test ASP.NET Core App
+        run: curl --fail http://localhost:5000 || exit 1
