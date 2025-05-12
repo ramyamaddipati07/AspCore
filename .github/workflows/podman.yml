@@ -12,34 +12,33 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Verify WSL podman-machine is running
+      - name: Start Podman WSL VM
         shell: powershell
         run: |
           $wslDistros = wsl --list --verbose
-          if ($wslDistros -notmatch "podman-machine" -or ($wslDistros -match "podman-machine" -and $wslDistros -match "Stopped")) {
-            Write-Host "Starting podman-machine..."
-            wsl -d podman-machine podman machine start
-          }
-          else {
-            Write-Host "podman-machine is already running."
+          if ($wslDistros -match "podman\s+Stopped") {
+            Write-Host "Starting podman WSL VM..."
+            podman machine start
+          } else {
+            Write-Host "Podman WSL VM already running."
           }
 
-      - name: Start Podman Service in WSL
+      - name: Start Podman System Service
         shell: powershell
         run: |
-          wsl -d podman-machine podman system service -t 0 &
+          wsl -d podman podman system service -t 0 &
 
       - name: Compose Down (clean-up)
         shell: powershell
         run: |
-          wsl -d podman-machine podman compose down || Write-Host "compose down failed or nothing to stop, continuing..."
+          wsl -d podman podman compose down || Write-Host "compose down failed or nothing to stop, continuing..."
 
       - name: Build and Compose Up
         shell: powershell
         run: |
-          wsl -d podman-machine podman compose -f docker-compose.yml up -d --build
+          wsl -d podman podman compose -f docker-compose.yml up -d --build
 
       - name: Check Podman Containers
         shell: powershell
         run: |
-          wsl -d podman-machine podman ps
+          wsl -d podman podman ps
