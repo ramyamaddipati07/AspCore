@@ -13,12 +13,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Start Podman Service in WSL
-        shell: pwsh
+        shell: powershell
         run: |
           wsl -d podman-machine podman system service -t 0 &
 
       - name: Compose Down (clean-up)
-        shell: pwsh
+        shell: powershell
         run: |
           wsl -d podman-machine podman compose down
           if ($LASTEXITCODE -ne 0) {
@@ -26,11 +26,11 @@ jobs:
           }
 
       - name: Build and Compose Up
-        shell: pwsh
+        shell: powershell
         run: |
           wsl -d podman-machine podman compose -f docker-compose.yml up -d --build
 
       - name: Check Podman Containers
-        shell: pwsh
+        shell: powershell
         run: |
           wsl -d podman-machine podman ps
