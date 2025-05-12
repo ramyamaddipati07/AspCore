@@ -13,6 +13,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+
       - name: Build and Run Containers
         run: |
           podman compose down; if ($LASTEXITCODE -ne 0) { Write-Host "compose down failed, continuing..." }
