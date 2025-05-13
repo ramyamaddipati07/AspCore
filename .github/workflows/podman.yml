@@ -15,7 +15,8 @@ jobs:
       - name: Build and Compose Up
         shell: powershell
         run: |
-          wsl -d podman podman compose -f docker-compose.yml up -d --build
+          wsl -d podman-machine podman compose -f docker-compose.yml up -d --build
+
 
       - name: Check Podman Containers
         shell: powershell
