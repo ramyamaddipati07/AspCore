@@ -1,25 +1,25 @@
-name: Build and Deploy Core App
+name: Build with Podman
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build-and-deploy:
-    runs-on: self-hosted  # or your custom Podman runner
+  build:
+    runs-on: self-hosted
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Build Docker Image with Podman
+      - name: Start Podman machine (if needed)
+        run: podman machine start
+
+      - name: Set default Podman connection
+        run: podman system connection default podman-machine
+
+      - name: Check Podman status
+        run: podman info
+
+      - name: Build image
         run: podman build -t my-core-app .
-
-      - name: Stop and Remove Existing Container (Optional)
-        run: |
-          podman stop coreapp || true
-          podman rm coreapp || true
-
-      - name: Run New Container
-        run: |
-          podman run -d --name coreapp -p 8080:80 my-core-app
-
