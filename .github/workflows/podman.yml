@@ -22,3 +22,4 @@ jobs:
       - name: Run New Container
         run: |
           podman run -d --name coreapp -p 8080:80 my-core-app
+
