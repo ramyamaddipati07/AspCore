@@ -1,4 +1,4 @@
-name: Build and Deploy ASP.NET Core with Podman
+name: Build and Deploy Core App
 
 on:
   push:
@@ -6,19 +6,19 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: self-hosted
+    runs-on: self-hosted  # or your custom Podman runner
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Build and Compose Up
-        shell: powershell
+      - name: Build Docker Image with Podman
+        run: podman build -t my-core-app .
+
+      - name: Stop and Remove Existing Container (Optional)
         run: |
-          wsl -d podman-machine podman compose -f docker-compose.yml up -d --build
+          podman stop coreapp || true
+          podman rm coreapp || true
 
-
-      - name: Check Podman Containers
-        shell: powershell
+      - name: Run New Container
         run: |
-          wsl -d podman podman ps
+          podman run -d --name coreapp -p 8080:80 my-core-app
