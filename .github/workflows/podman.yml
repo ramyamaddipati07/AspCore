@@ -1,21 +1,22 @@
-name: Build with Podman
+name: Podman Build
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+
 jobs:
-  build:
-    runs-on: self-hosted
+  podman-job:
+    runs-on: [self-hosted, windows]
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Set default Podman connection
-        run: podman system connection default podman-machine
+      - name: Start Podman Machine
+        run: podman machine start
 
-      - name: Check Podman status
-        run: podman info
+      - name: Build container image
+        run: podman build -t myapp .
 
-      - name: Build image
-        run: podman build -t my-core-app .
+      - name: Run container
+        run: podman run -d -p 8080:80 myapp
