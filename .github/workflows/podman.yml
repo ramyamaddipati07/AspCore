@@ -12,8 +12,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build container image
-        run: podman build -t myapp .
+      - name: Run Podman Compose Up
+        run: |
+          podman --version
+          podman-compose --version
+          podman-compose -f podman-compose.yml up -d --build
+          
+      #- name: Build container image
+      #  run: podman build -t myapp .
 
-      - name: Run container
-        run: podman run -d -p 6025:80 myapp
+     # - name: Run container
+      #  run: podman run -d -p 6025:80 myapp
