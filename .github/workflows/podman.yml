@@ -16,4 +16,4 @@ jobs:
         run: podman build -t myapp .
 
       - name: Run container
-        run: podman run -d -p 4050:80 myapp
+        run: podman run -d -p 6025:80 myapp
