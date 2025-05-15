@@ -6,7 +6,7 @@ on:
 
 jobs:
   podman-job:
-    runs-on: [self-hosted, windows]
+    runs-on: [self-hosted, user]
 
     steps:
       - name: Checkout code
