@@ -18,6 +18,22 @@ jobs:
           podman-compose --version
           podman-compose -f podman-compose.yml up -d --build
 
+      - name: Show Running Containers
+        run: podman ps
+
+      - name: Copy .NET publish output from container
+        run: podman cp my_backend:/app/publish ./dotnet-publish
+
+      - name: Deploy to IIS (overwrite site folder)
+        run: |
+          Remove-Item -Recurse -Force "D:\Deploy\Core_Actions_Podman\*" -ErrorAction SilentlyContinue
+          Copy-Item -Recurse -Force ".\dotnet-publish\*" "D:\Deploy\Core_Actions_Podman"
+
+      - name: Restart IIS Site
+        run: |
+          Import-Module WebAdministration
+          Restart-WebSite -Name "Core_Actions_Podman"
+
           
       #- name: Build container image
       #  run: podman build -t myapp .
