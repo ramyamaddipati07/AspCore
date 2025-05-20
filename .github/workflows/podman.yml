@@ -21,8 +21,9 @@ jobs:
       - name: Show Running Containers
         run: podman ps
 
-      - name: Copy .NET publish output from container
-        run: podman cp asp_core:/app/publish ./dotnet-publish
+      - name: Copy .NET Core publish output
+        run: podman cp asp_core:/app/bin/Release/net6.0/publish ./dotnet-publish
+
 
       - name: Deploy to IIS (overwrite site folder)
         run: |
