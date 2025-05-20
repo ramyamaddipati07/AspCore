@@ -22,7 +22,7 @@ jobs:
         run: podman ps
 
       - name: Copy .NET publish output from container
-        run: podman cp my_backend:/app/publish ./dotnet-publish
+        run: podman cp asp_core:/app/publish ./dotnet-publish
 
       - name: Deploy to IIS (overwrite site folder)
         run: |
