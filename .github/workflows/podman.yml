@@ -17,6 +17,7 @@ jobs:
           podman --version
           podman-compose --version
           podman-compose -f podman-compose.yml up -d --build
+
           
       #- name: Build container image
       #  run: podman build -t myapp .
